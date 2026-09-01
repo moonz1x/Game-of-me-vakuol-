@@ -17,13 +17,12 @@ const caseCost = 250;
 
 // ТВОЯ БАЗА ПЕРСОНАЖЕЙ (МЕНЯЙ ТУТ ИМЕНА, ДОХОД И ЦЕНУ ПРОДАЖИ!)
 const youtubersDatabase = [
-    { id: "marmok", name: "Мармок", rarity: "rare", reward: 5, avatar: "./images/marmok.jpg", color: "#1e3a8a", sellPrice: 500 },
     { id: "mrbeast", name: "Мистер Бист", rarity: "legendary", reward: 50, avatar: "./images/mrbeast.jpg", color: "#78350f", sellPrice: 5000 },
     { id: "amiran", name: "Амиран", rarity: "common", reward: 1, avatar: "./images/amiran.jpg", color: "#334155", sellPrice: 100 },
     { id: "litvin", name: "Литвин", rarity: "rare", reward: 10, avatar: "./images/litvin.jpg", color: "#1e3a8a", sellPrice: 1000 },
     { id: "glent", name: "Глент", rarity: "common", reward: 2, avatar: "./images/glent.jpg", color: "#334155", sellPrice: 200 },
     { id: "wylsacom", name: "Вилсаком", rarity: "legendary", reward: 30, avatar: "./images/wylsacom.jpg", color: "#78350f", sellPrice: 3000 }
-];
+];  
 
 
 // ==========================================
@@ -132,7 +131,7 @@ function addXP(amount) {
         gameState.coins += levelBonus;
         
         setTimeout(() => { 
-            alert(`🚀 ЛЕВЕЛАП! Твой уровень: ${gameState.level}!\n💰 Бонус за статус: +$${levelBonus}!`); 
+            alert(`🚀 Прокачка уровня! Твой уровень: ${gameState.level}!\n💰 Бонус за статус: +$${levelBonus}!`); 
         }, 50);
     }
 }
@@ -180,7 +179,7 @@ if (ui.upgradeBtn) {
             updateUI();
             saveGame();
         } else {
-            alert('Не хватает баксов, бро!');
+            alert('Не хватает средств!');
         }
     };
 }
@@ -261,7 +260,7 @@ if (ui.buyCaseBtn) {
             gameState.inventory.push({ id: prize.id });
             saveGame();
             updateUI();
-            alert(`📦 КЕЙС ОТКРЫТ!\nТебе выпал персонаж: ${prize.name}! [${prize.rarity.toUpperCase()}]`);
+            alert(`📦 \nТебе выпал персонаж: ${prize.name}! [${prize.rarity.toUpperCase()}]`);
         }, 4100);
     };
 }
@@ -272,7 +271,7 @@ function updateSpinButtonStatus() {
     const lastSpin = localStorage.getItem('last_free_spin');
     
     if (!lastSpin) {
-        ui.spinBtn.textContent = "Крутануть БЕСПЛАТНО";
+        ui.spinBtn.textContent = "Прокрутить бесплатно";
         ui.spinBtn.dataset.mode = "free";
         ui.spinBtn.disabled = isWheelSpinning;
         return;
@@ -282,7 +281,7 @@ function updateSpinButtonStatus() {
     const timeLeft = parseInt(lastSpin) + (24 * 60 * 60 * 1000) - now;
 
     if (timeLeft <= 0) {
-        ui.spinBtn.textContent = "Крутануть БЕСПЛАТНО";
+        ui.spinBtn.textContent = "Прокрутить бесплатно";
         ui.spinBtn.dataset.mode = "free";
         ui.spinBtn.disabled = isWheelSpinning;
     } else {
@@ -290,7 +289,7 @@ function updateSpinButtonStatus() {
         const hours = Math.floor(timeLeft / (60 * 60 * 1000));
         const minutes = Math.floor((timeLeft % (60 * 60 * 1000)) / (60 * 1000));
         const seconds = Math.floor((timeLeft % 1000) / 1000);
-        ui.spinBtn.textContent = `До халявы: ${hours}ч ${minutes}м ${seconds}с или за $500`;
+        ui.spinBtn.textContent = `До спина: ${hours}ч ${minutes}м ${seconds}с или за $500`;
         ui.spinBtn.disabled = isWheelSpinning;
     }
 }
@@ -325,7 +324,7 @@ if (ui.spinBtn) {
             saveGame();
             updateSpinButtonStatus();
             updateUI();
-            alert(`🎉 РУЛЕТКА ОСТАНОВИЛАСЬ!\nВы выиграли: ${prize.name}!`);
+            alert(`🎉 \nВы выиграли: ${prize.name}!`);
         }, 4100);
     };
 }
@@ -399,7 +398,7 @@ function loadGame() {
 }
 if (ui.resetBtn) {
     ui.resetBtn.onclick = function() {
-        if (confirm('Реально хочешь обнулить весь прогресс?')) { localStorage.removeItem('ultimate_clicker_save_v6'); location.reload(); }
+        if (confirm('Точно хочешь обнулить весь прогресс?')) { localStorage.removeItem('ultimate_clicker_save_v6'); location.reload(); }
     };
 }
 
