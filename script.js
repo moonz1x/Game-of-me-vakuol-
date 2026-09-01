@@ -17,12 +17,17 @@ const caseCost = 250;
 
 // ТВОЯ БАЗА ПЕРСОНАЖЕЙ (МЕНЯЙ ТУТ ИМЕНА, ДОХОД И ЦЕНУ ПРОДАЖИ!)
 const youtubersDatabase = [
-    { id: "mrbeast", name: "Мистер Бист", rarity: "legendary", reward: 50, avatar: "./images/mrbeast.jpg", color: "#78350f", sellPrice: 5000 },
-    { id: "amiran", name: "Амиран", rarity: "common", reward: 1, avatar: "./images/amiran.jpg", color: "#334155", sellPrice: 100 },
-    { id: "litvin", name: "Литвин", rarity: "rare", reward: 10, avatar: "./images/litvin.jpg", color: "#1e3a8a", sellPrice: 1000 },
-    { id: "glent", name: "Глент", rarity: "common", reward: 2, avatar: "./images/glent.jpg", color: "#334155", sellPrice: 200 },
-    { id: "wylsacom", name: "Вилсаком", rarity: "legendary", reward: 30, avatar: "./images/wylsacom.jpg", color: "#78350f", sellPrice: 3000 }
-];  
+    { id: "mrbeast", name: "Мистер Бист", rarity: "legendary", reward: 50, avatar: "./image/mrbeast.jpg", color: "#78350f", sellPrice: 5000 },
+    { id: "amiran", name: "Амиран", rarity: "common", reward: 1, avatar: "./image/amiran.jpg", color: "#334155", sellPrice: 100 },
+    { id: "a4", name: "А4", rarity: "rare", reward: 3, avatar: "./image/a4.jpg", color: "#78350f", sellPrice: 300 },
+    { id: "buster", name: "Бустер", rarity: "mythic", reward: 50, avatar: "./image/buster.jpg", color: "#78350f", sellPrice: 5000 },
+    { id: "evelone", name: "Эвелон", rarity: "legendary", reward: 50, avatar: "./image/evelone.jpg", color: "#78350f", sellPrice: 5000 },
+    { id: "gaečka", name: "Гаечка", rarity: "epic", reward: 15, avatar: "./image/gaečka.jpg", color: "#78350f", sellPrice: 1500 },
+    { id: "gensuha", name: "Генсуха", rarity: "mythic", reward: 30, avatar: "./image/gensuha.jpg", color: "#78350f", sellPrice: 5000 },
+    { id: "litvin", name: "Литвин", rarity: "rare", reward: 10, avatar: "./images/litvin.jpg", color: "#1e3a8a", sellPrice: 1000 }, // Тут у тебя опечатка была в слове images, сделай тоже ./image/litvin.jpg
+    { id: "glent", name: "Глент", rarity: "common", reward: 2, avatar: "./image/glent.jpg", color: "#334155", sellPrice: 200 },
+    { id: "wylsacom", name: "Вилсаком", rarity: "legendary", reward: 30, avatar: "./image/wylsacom.jpg", color: "#78350f", sellPrice: 3000 }
+];
 
 
 // ==========================================
