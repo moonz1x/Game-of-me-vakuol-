@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDIA NETWORK PRO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Навигация: Проверь, чтобы id были ОДИН В ОДИН как тут! -->
+    <div class="nav-buttons">
+        <button id="open-shop-btn">🛒 Магазин кейсов</button>
+        <button id="open-wheel-btn">🎡 Колесо</button>
+        <button id="open-inventory-btn">🎒 Инвентарь</button>
+    </div>
+
+    <!-- Главный экран игры -->
+    <div id="main-container" class="game-container">
+        <h1>MEDIA NETWORK</h1>
+        
+        <div class="balance-board">
+            <div>Баланс</div>
+            <div id="balance">$0</div>
+            <div id="cps-amount">+$0/сек</div>
+        </div>
+
+        <div class="level-container">
+            <div class="level-header">
+                <span>Уровень: <strong id="player-level">1</strong></span>
+                <span id="xp-text">0 / 100 XP</span>
+            </div>
+            <div class="xp-bar-bg">
+                <div id="xp-bar-fill"></div>
+            </div>
+        </div>
+
+        <div class="click-section">
+            <div class="click-btn-wrapper">
+                <button id="click-btn">КЛИК!</button>
+            </div>
+            <button id="upgrade-click-btn">Прокачать клик (+$1) <span id="upgrade-cost">$50</span></button>
+        </div>
+
+        <button id="reset-game-btn">❌ Сбросить прогресс</button>
+    </div>
+
+    <!-- Модалка: Магазин Кейсов -->
+    <div id="shop-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-shop-btn" class="close-btn">&times;</button>
+            <h2>Открытие Медиа-Кейса</h2>
+            
+            <div class="roulette-viewport">
+                <div class="roulette-marker"></div>
+                <div id="case-roulette-track" class="roulette-track"></div>
+            </div>
+
+            <div class="shop-buttons">
+                <button id="buy-case-btn">
+                    <span>Открыть Кейс</span> 
+                    <span id="case-cost" class="price-tag">$250</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модалка: Колесо -->
+    <div id="wheel-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-wheel-btn" class="close-btn">&times;</button>
+            <h2>Колесо Фортуны</h2>
+            <div class="wheel-wrapper">
+                <div class="wheel-pointer">▼</div>
+                <canvas id="wheel-canvas" width="300" height="300"></canvas>
+            </div>
+            <button id="spin-btn">Крутануть за $500</button>
+        </div>
+    </div>
+
+    <!-- Модалка: Инвентарь -->
+    <div id="inventory-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-inventory-btn" class="close-btn">&times;</button>
+            <h2>Ваша медиа-банда</h2>
+            <div id="inventory-list"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
