@@ -1,0 +1,350 @@
+/* ==========================================
+   STYLE.CSS: ЧАСТЬ 1 — ИНТЕРФЕЙС И КЛИКЕР
+   ========================================== */
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    user-select: none; outline: none;
+}
+/* Кастомный скроллбар */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0b0c10; }
+::-webkit-scrollbar-thumb { background: #1f2833; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #45f3ff; }
+
+body {
+    background: radial-gradient(circle at center, #1a1a24 0%, #08080c 100%);
+    color: #c5c6c7; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;
+    overflow-x: hidden;
+}
+
+/* Навигация Steam-Style */
+.nav-buttons {
+    margin-bottom: 24px; display: flex; gap: 10px;
+    background: #0b0c10; padding: 6px; border-radius: 16px;
+    border: 1px solid #1f2833; box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.nav-buttons button {
+    background: linear-gradient(180deg, #1f2833 0%, #151b22 100%); 
+    border: 1px solid rgba(69, 243, 255, 0.1); color: #c5c6c7;
+    padding: 12px 20px; border-radius: 12px; cursor: pointer;
+    font-size: 14px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.5px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-buttons button:hover { 
+    color: #45f3ff; border-color: #45f3ff;
+    box-shadow: 0 0 15px rgba(69, 243, 255, 0.3); transform: translateY(-1px);
+}
+
+/* Главный контейнер игры */
+.game-container {
+    background: rgba(11, 12, 16, 0.85); border: 1px solid rgba(31, 40, 51, 0.8);
+    backdrop-filter: blur(25px); border-radius: 36px; padding: 35px 24px;
+    width: 100%; max-width: 390px; text-align: center;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255,255,255,0.05); 
+    display: flex; flex-direction: column; gap: 24px;
+    transition: transform 0.1s ease;
+}
+.game-container.shake { animation: cyberpunkShake 0.1s ease-in-out infinite; }
+@keyframes cyberpunkShake {
+    0% { transform: translate(2px, -1px); }
+    50% { transform: translate(-1px, 2px); }
+    100% { transform: translate(0, 0); }
+}
+
+h1 { font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: #45f3ff; font-weight: 900; text-shadow: 0 0 10px rgba(69, 243, 255, 0.5); }
+.balance-board { display: flex; flex-direction: column; gap: 6px; }
+.balance-board div:first-child { font-size: 11px; color: #666; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+#balance { font-size: 56px; font-weight: 900; color: #fff; letter-spacing: -2px; }
+#cps-amount { font-size: 14px; color: #02f1a3; font-weight: 800; letter-spacing: 0.5px; }
+
+/* Прогресс-бар */
+.level-container {
+    width: 100%; display: flex; flex-direction: column; gap: 10px;
+    background: #0b0c10; padding: 14px; border-radius: 18px; border: 1px solid #1f2833;
+}
+.level-header { display: flex; justify-content: space-between; font-size: 13px; font-weight: 800; color: #888; }
+.level-header strong { color: #45f3ff; }
+.xp-bar-bg { width: 100%; height: 10px; background: #151b22; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.02); }
+#xp-bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #45f3ff, #ff007f); border-radius: 6px; transition: width 0.12s ease; }
+
+/* Кнопка Реактор-Кликер */
+.click-section { width: 100%; display: flex; flex-direction: column; gap: 20px; }
+.click-btn-wrapper { position: relative; margin: 0 auto; }
+#click-btn {
+    width: 190px; height: 190px; border-radius: 50%;
+    background: radial-gradient(circle, #1f2833 0%, #0b0c10 100%); 
+    border: 4px solid #1f2833; color: #fff; font-size: 26px; font-weight: 900; letter-spacing: 2px; cursor: pointer;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 4px 8px rgba(255, 255, 255, 0.05);
+    transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#click-btn:hover { border-color: #45f3ff; box-shadow: 0 0 40px rgba(69, 243, 255, 0.4), inset 0 0 20px rgba(69, 243, 255, 0.2); }
+#click-btn:active { transform: scale(0.93); filter: brightness(1.2); }
+
+/* Апгрейды */
+#upgrade-click-btn {
+    width: 100%; background: #151b22; border: 1px solid #1f2833;
+    color: #fff; padding: 16px; border-radius: 18px; font-size: 15px; font-weight: 700;
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s ease;
+}
+#upgrade-click-btn:hover { background: #1f2833; border-color: rgba(69, 243, 255, 0.3); }
+#upgrade-cost { background: rgba(2, 241, 163, 0.1); color: #02f1a3; border: 1px solid rgba(2, 241, 163, 0.2); padding: 5px 12px; border-radius: 10px; font-size: 13px; font-weight: 800; }
+/* ==========================================
+   STYLE.CSS: ЧАСТЬ 2 — БИЗНЕСЫ, МОДАЛКИ, КАЗИНО
+   ========================================== */
+
+/* НЕОНОВЫЙ ДИЗАЙН СЕКЦИИ БИЗНЕСА */
+.businesses-section {
+    background: #0b0c10; border: 1px solid #1f2833;
+    border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 12px;
+    text-align: left; box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+}
+.businesses-section h2 {
+    font-size: 13px; font-weight: 900; text-transform: uppercase;
+    color: #45f3ff; letter-spacing: 1px; border-bottom: 1px solid #1f2833;
+    padding-bottom: 8px; margin-bottom: 4px;
+}
+.business-card {
+    background: #151b22; border: 1px solid rgba(255,255,255,0.02);
+    border-radius: 16px; padding: 12px; display: flex; justify-content: space-between;
+    align-items: center; gap: 10px; transition: all 0.2s ease;
+}
+.business-card:hover { border-color: rgba(69, 243, 255, 0.2); background: #1b222c; }
+.biz-info { display: flex; flex-direction: column; gap: 2px; }
+.biz-name { font-size: 14px; font-weight: 800; color: #fff; }
+.biz-name strong { color: #ff007f; margin-left: 4px; }
+.biz-income { font-size: 12px; color: #02f1a3; font-weight: 700; }
+.biz-buy-btn {
+    background: linear-gradient(180deg, #1f2833 0%, #151b22 100%);
+    border: 1px solid rgba(69, 243, 255, 0.2); color: #45f3ff;
+    padding: 10px 14px; border-radius: 10px; font-size: 12px; font-weight: 800;
+    cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 1px;
+    transition: all 0.2s ease;
+}
+.biz-buy-btn:hover { background: #45f3ff; color: #0b0c10; box-shadow: 0 0 10px rgba(69, 243, 255, 0.4); }
+.biz-buy-btn span { font-size: 10px; font-weight: 900; opacity: 0.9; }
+
+#reset-game-btn { background: none; border: none; color: #444; font-size: 11px; cursor: pointer; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+#reset-game-btn:hover { color: #ff007f; }
+
+/* Цифры клика */
+.floating-text {
+    position: fixed; pointer-events: none; color: #02f1a3; font-size: 34px; font-weight: 900;
+    text-shadow: 0 0 15px rgba(2, 241, 163, 0.6); transform: translate(-50%, -50%);
+    animation: neonClickUp 0.75s cubic-bezier(0.1, 0.8, 0.1, 1) forwards; z-index: 9999;
+}
+.floating-text.crit { color: #ff007f; font-size: 46px; text-shadow: 0 0 20px rgba(255, 0, 127, 0.8); }
+@keyframes neonClickUp {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%, -160px) scale(0.8); }
+}
+
+/* Модалки фикс */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(5, 5, 8, 0.85); backdrop-filter: blur(15px);
+    justify-content: center; align-items: center; z-index: 2000;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    display: flex; 
+}
+.modal-overlay.active { opacity: 1 !important; pointer-events: auto !important; }
+
+.modal-content {
+    background: #0b0c10; border: 1px solid #1f2833;
+    padding: 35px 24px; border-radius: 32px; position: relative;
+    width: 92%; max-width: 395px; box-shadow: 0 50px 120px rgba(0, 0, 0, 0.8);
+}
+.modal-content h2 { font-size: 24px; font-weight: 900; margin-bottom: 26px; text-align: center; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+.close-btn {
+    position: absolute; top: 22px; right: 22px; background: #15171e;
+    border: 1px solid #1f2833; color: #c5c6c7; width: 36px; height: 36px; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.close-btn:hover { background: rgba(255, 0, 127, 0.1); color: #ff007f; border-color: #ff007f; }
+
+.shop-buttons button {
+    width: 100%; background: linear-gradient(180deg, #1f2833 0%, #151b22 100%); 
+    color: #fff; border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 18px; cursor: pointer; font-weight: 800;
+}
+.shop-buttons button:hover { border-color: #45f3ff; box-shadow: 0 0 15px rgba(69, 243, 255, 0.2); }
+.shop-buttons button:disabled { background: #0b0c10; border-color: #151b22; color: #444; cursor: not-allowed; box-shadow: none; }
+
+#inventory-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; max-height: 310px; overflow-y: auto; padding-right: 2px; }
+.youtuber-card {
+    background: #151b22; border: 1px solid #1f2833; padding: 16px; border-radius: 22px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.avatar-wrapper { width: 68px; height: 68px; border-radius: 50%; overflow: hidden; background: #0b0c10; border: 2px solid #1f2833; }
+.youtuber-avatar { width: 100%; height: 100%; object-fit: cover; }
+.card-name { font-weight: 800; font-size: 14px; color: #fff; }
+.card-rarity { font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+.card-reward { font-size: 12px; color: #02f1a3; font-weight: 800; background: rgba(2, 241, 163, 0.06); padding: 4px 10px; border-radius: 8px; }
+
+.youtuber-card.common .avatar-wrapper { border-color: #64748b; }
+.youtuber-card.rare { border-color: rgba(69, 243, 255, 0.4); }
+.youtuber-card.rare .avatar-wrapper { border-color: #45f3ff; }
+.youtuber-card.legendary { border-color: rgba(255, 0, 127, 0.4); }
+.youtuber-card.legendary .avatar-wrapper { border-color: #ff007f; }
+
+.sell-btn {
+    width: 100%; background: rgba(255, 0, 127, 0.06); border: 1px solid rgba(255, 0, 127, 0.2);
+    color: #ff45a1; padding: 8px 0; border-radius: 10px; font-size: 11px; font-weight: 800; cursor: pointer; transition: all 0.2s ease;
+}
+.sell-btn:hover { background: #ff007f; color: #fff; border-color: #ff007f; box-shadow: 0 0 15px rgba(255,0,127,0.4); }
+
+/* РУЛЕТКА */
+.roulette-viewport {
+    position: relative; width: 340px; height: 130px; background: #0b0c10; border: 2px solid #1f2833; border-radius: 24px;
+    margin: 15px auto 25px auto; overflow: hidden; box-shadow: inset 0 0 30px rgba(0,0,0,0.9);
+}
+.roulette-marker {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 3px; height: 100%; background: #ff007f; z-index: 100; box-shadow: 0 0 12px #ff007f;
+}
+.roulette-track { display: flex; align-items: center; gap: 10px; padding: 0 15px; height: 100%; width: max-content; transform: translateX(0px); }
+.roulette-card {
+    width: 100px; height: 105px; background: #151b22; border: 2px solid #1f2833; border-radius: 16px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0;
+}
+.roulette-card img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+.roulette-card .r-name { font-size: 11px; font-weight: 800; color: #fff; max-width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.roulette-card.common { border-color: #64748b; }
+.roulette-card.rare { border-color: #45f3ff; background: rgba(69, 243, 255, 0.02); }
+.roulette-card.legendary { border-color: #ff007f; background: rgba(255, 0, 127, 0.02); }
+
+.action-btn {
+    width: 100%; background: linear-gradient(135deg, #45f3ff 0%, #1d4ed8 100%); color: #fff; border: none;
+    padding: 18px; border-radius: 18px; cursor: pointer; font-weight: 900; font-size: 16px; text-transform: uppercase;
+    box-shadow: 0 10px 25px rgba(69, 243, 255, 0.25); margin-top: 10px;
+}
+.action-btn:hover { background: linear-gradient(135deg, #ff007f 0%, #45f3ff 100%); box-shadow: 0 10px 30px rgba(255, 0, 127, 0.35); }
+.action-btn:disabled { background: #151b22; color: #444; cursor: not-allowed; box-shadow: none; }
+
+/* Частицы */
+.confetti {
+    position: fixed; width: 12px; height: 12px; pointer-events: none; z-index: 9999; border-radius: 4px;
+    animation: confettiFall 3s cubic-bezier(0.1, 0.8, 0.1, 1) forwards;
+}
+@keyframes confettiFall {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+    100% { transform: translate(var(--x), 600px) rotate(var(--r)) scale(0.5); opacity: 0; }
+}
+
+.modal-content.legendary-drop-anim { animation: neonGoldenGlow 0.8s ease-in-out infinite alternate; }
+@keyframes neonGoldenGlow {
+    0% { border-color: #ff007f; box-shadow: 0 0 30px rgba(255, 0, 127, 0.5); }
+    100% { border-color: #45f3ff; box-shadow: 0 0 50px rgba(69, 243, 255, 0.7); }
+}
+/* ==========================================
+   СТИЛИ ДЛЯ СИСТЕМЫ КОНТРАКТОВ (КРАФТА)
+   ========================================== */
+.contract-container {
+    background: #0b0c10;
+    border: 1px solid #1f2833;
+    border-radius: 20px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contract-title {
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #45f3ff;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.contract-slots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.contract-slot {
+    height: 70px;
+    background: #151b22;
+    border: 2px dashed #1f2833;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #444;
+    text-align: center;
+    padding: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contract-slot.filled {
+    border-style: solid;
+    color: #fff;
+    background: rgba(69, 243, 255, 0.03);
+}
+
+/* Цвета заполненных слотов контракта по редкости */
+.contract-slot.common { border-color: #64748b; color: #64748b; }
+.contract-slot.rare { border-color: #45f3ff; color: #45f3ff; text-shadow: 0 0 8px rgba(69, 243, 255, 0.3); }
+.contract-slot.legendary { border-color: #ff007f; color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.3); }
+
+/* Кнопка запуска крафта */
+.craft-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #ff007f 0%, #a855f7 100%);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 0, 127, 0.25);
+    transition: all 0.2s ease;
+}
+
+.craft-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(255, 0, 127, 0.45);
+    filter: brightness(1.1);
+}
+
+.craft-btn:disabled {
+    background: #151b22;
+    border: 1px solid #1f2833;
+    color: #444;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Новая кнопка добавления в контракт внутри карточек инвентаря */
+.add-to-craft-btn {
+    width: 100%;
+    background: rgba(69, 243, 255, 0.06);
+    border: 1px solid rgba(69, 243, 255, 0.2);
+    color: #45f3ff;
+    padding: 6px 0;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: all 0.2s ease;
+}
+
+.add-to-craft-btn:hover {
+    background: #45f3ff;
+    color: #0b0c10;
+    box-shadow: 0 0 15px rgba(69, 243, 255, 0.4);
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDIA NETWORK PRO — Кейсы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Топовая навигация -->
+    <div class="nav-buttons">
+        <button id="open-shop-btn">🛒 Магазин кейсов</button>
+        <button id="open-wheel-btn">🎡 Колесо</button>
+        <button id="open-inventory-btn">🎒 Инвентарь</button>
+        <button id="open-craft-btn">🔥 Контракты</button>
+    </div>
+
+    <!-- Главный экран -->
+    <div id="main-container" class="game-container">
+        <h1>vakuol game</h1>
+        
+        <div class="balance-board">
+            <div>Баланс</div>
+            <div id="balance">$0</div>
+            <div id="cps-amount">+$0/сек</div>
+        </div>
+
+        <div class="level-container">
+            <div class="level-header">
+                <span>Уровень: <strong id="player-level">1</strong></span>
+                <span id="xp-text">0 / 100 XP</span>
+            </div>
+            <div class="xp-bar-bg">
+                <div id="xp-bar-fill"></div>
+            </div>
+        </div>
+
+        <div class="click-section">
+            <div class="click-btn-wrapper">
+                <button id="click-btn">КЛИК!</button>
+            </div>
+            <button id="upgrade-click-btn">Прокачать клик (+$1) <span id="upgrade-cost">$50</span></button>
+        </div>
+
+        <!-- СЕКЦИЯ: ИГРОВЫЕ КЛУБЫ (БИЗНЕС) -->
+        <div class="businesses-section">
+            <h2>💻 Твоя Сеть Клубов</h2>
+            <div class="business-card" id="biz-basement">
+                <div class="biz-info">
+                    <span class="biz-name">Клуб "Подвал" <strong id="count-basement">(0)</strong></span>
+                    <span class="biz-income" id="income-basement">+$0/сек</span>
+                </div>
+                <button class="biz-buy-btn" id="buy-biz-basement"></button>
+            </div>
+            
+            <div class="business-card" id="biz-neon">
+                <div class="biz-info">
+                    <span class="biz-name">Клуб "Неон Гейминг" <strong id="count-neon">(0)</strong></span>
+                    <span class="biz-income" id="income-neon">+$0/сек</span>
+                </div>
+                <button class="biz-buy-btn" id="buy-biz-neon"></button>
+            </div>
+
+            <div class="business-card" id="biz-arena">
+                <div class="biz-info">
+                    <span class="biz-name">Cyber Arena Ultra <strong id="count-arena">(0)</strong></span>
+                    <span class="biz-income" id="income-arena">+$0/сек</span>
+                </div>
+                <button class="biz-buy-btn" id="buy-biz-arena"></button>
+            </div>
+        </div>
+
+        <button id="reset-game-btn">❌ Сбросить прогресс</button>
+    </div>
+
+    <!-- Модалка: Магазин Кейсов -->
+    <div id="shop-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-shop-btn" class="close-btn">&times;</button>
+            <h2>Магазин Кейсов</h2>
+            <div class="roulette-viewport">
+                <div class="roulette-marker"></div>
+                <div id="case-roulette-track" class="roulette-track"></div>
+            </div>
+            <div class="shop-buttons" style="display:flex; flex-direction:column; gap:10px;">
+                <button id="buy-deshman-btn"><span>Открыть "бомж кейс"</span> <span id="buy-deshman-cost" class="price-tag">$150</span></button>
+                <button id="buy-normis-btn"><span>Открыть "нормис кейс"</span> <span id="buy-normis-cost" class="price-tag">$5000</span></button>
+                <button id="buy-legends-btn"><span>Открыть "кейс легенд"</span> <span id="buy-legends-cost" class="price-tag">$250000</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модалка: Колесо -->
+    <div id="wheel-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-wheel-btn" class="close-btn">&times;</button>
+            <h2>Ежедневное Колесо</h2>
+            <div class="roulette-viewport">
+                <div class="roulette-marker"></div>
+                <div id="roulette-track" class="roulette-track"></div>
+            </div>
+            <button id="spin-btn" class="action-btn">Прокрутить бесплатно</button>
+        </div>
+    </div>
+
+    <!-- Модалка: Инвентарь -->
+    <div id="inventory-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-inventory-btn" class="close-btn">&times;</button>
+            <h2>🎒 Твой Инвентарь</h2>
+            <div id="inventory-list"></div>
+        </div>
+    </div>
+
+    <!-- Модалка: ОТДЕЛЬНОЕ ОКНО КРАФТА -->
+    <div id="craft-modal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 420px;">
+            <button id="close-craft-btn" class="close-btn">&times;</button>
+            <h2>🔥 Фабрика Контрактов</h2>
+            
+            <div class="contract-container">
+                <div class="contract-title">Выбрано для обмена: <span id="contract-count">0/3</span></div>
+                <div class="contract-slots" id="contract-slots-zone">
+                    <div class="contract-slot" id="slot-0">Пусто</div>
+                    <div class="contract-slot" id="slot-1">Пусто</div>
+                    <div class="contract-slot" id="slot-2">Пусто</div>
+                </div>
+                <button id="craft-action-btn" class="craft-btn" disabled>Запустить крафт</button>
+            </div>
+
+            <div class="contract-title" style="margin-bottom: 10px;">Выбери 3 карточки одной редкости:</div>
+            <div id="craft-inventory-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; max-height: 200px; overflow-y: auto; padding-right: 2px;"></div>
+        </div>
+    </div>
+    <!-- Секретная Админка Владельца -->
+    <div id="admin-modal" class="modal-overlay">
+        <div class="modal-content" style="border-color: #ff007f; box-shadow: 0 0 30px rgba(255, 0, 127, 0.3);">
+            <button id="close-admin-btn" class="close-btn">&times;</button>
+            <h2 style="color: #ff007f; text-shadow: 0 0 10px rgba(255, 0, 127, 0.4);">⚙️ PANEL РАЗРАБОТЧИКА</h2>
+            
+            <div class="businesses-section" style="gap: 15px; background: #0b0c10;">
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 11px; font-weight: 900; color: #45f3ff; text-transform: uppercase;">Накрутить Баланс ($):</label>
+                    <input type="number" id="admin-coins-input" placeholder="Введите сумму..." style="background: #151b22; border: 1px solid #1f2833; padding: 12px; border-radius: 10px; color: #fff; font-weight: 800; font-size: 14px;">
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 11px; font-weight: 900; color: #45f3ff; text-transform: uppercase;">Установить Уровень:</label>
+                    <input type="number" id="admin-level-input" placeholder="Введите левел..." style="background: #151b22; border: 1px solid #1f2833; padding: 12px; border-radius: 10px; color: #fff; font-weight: 800; font-size: 14px;">
+                </div>
+
+                <button id="admin-apply-btn" class="action-btn" style="background: linear-gradient(135deg, #ff007f 0%, #1d4ed8 100%); box-shadow: 0 10px 25px rgba(255, 0, 127, 0.25);">Применить читы</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
